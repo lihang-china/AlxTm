@@ -1,0 +1,36 @@
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: linear-gradient(40deg, rgb(255, 255, 255) 90%, rgba(0, 0, 0, 0.5) 90.1%);
+    .login-form {
+        width: 380px;
+        padding: 50px 20px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 0 10px 0px rgb(99, 99, 99);
+    }
+    button {
+        width: 100%;
+        background-color: black !important;
+        border-color: black !important;
+    }
+    h1 {
+        text-align: center;
+        color: black;
+        font-weight: bold !important;
+        letter-spacing: 4px;
+    }
+    .login-title {
+        z-index: -1;
+        position: absolute;
+        font-size: 240px;
+        font-weight: bold;
+        letter-spacing: 60px;
+        transform: rotate(30deg);
+        &:nth-child(2) {
+            transform: rotate(-60deg);
+        }
+    }
+}

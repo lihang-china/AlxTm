@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+/*
+ * @Descriptin: 
+ * @Version: 0.1
+ * @Autor: Your Name
+ * @Date: 2022-08-17 14:48:14
+ * @LastEditors: Your Name
+ * @LastEditTime: 2022-08-19 15:25:34
+ */
+import { Redirect, Route, HashRouter, Switch } from 'react-router-dom';
+import Login from './views/login/index'
+import Main from './views/main/index'
+import NotFound from './redirect/404';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <HashRouter>
+      <Switch>
+        <Route path='/login' component={Login} />
+        <Route path='/main' component={Main} />
+        <Redirect from='/' to="/login"></Redirect>
+        <Route component={NotFound} />
+      </Switch>
+    </HashRouter>
+
+  )
 }
 
 export default App;
