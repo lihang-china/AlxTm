@@ -19,6 +19,7 @@
             padding: 24px;
             display: flex;
             flex-direction: column;
+            color: rgb(31, 38, 51);
             animation: change 1.2s;
             span {
                 display: flex;
@@ -43,12 +44,12 @@
                     letter-spacing: -2px;
                 }
                 &:nth-child(2) {
-                    line-height: 12px;
+                    line-height: 16px;
                     font-size: 12px;
                     letter-spacing: 1px;
                 }
                 &:nth-child(3) {
-                    margin-top: 4px;
+                    margin-top: 8px;
                     font-size: 8px;
                     line-height: 10px;
                     padding: 4px;
@@ -66,7 +67,6 @@
             height: 100%;
             font-size: 18px;
             border: 0;
-            color: rgb(70, 70, 70);
             li {
                 display: flex;
                 align-items: center;
@@ -82,7 +82,7 @@
             }
             .ant-menu-item-selected {
                 background: rgb(238, 238, 238);
-                color: rgb(0, 0, 0);
+                color: rgb(31, 38, 51);
                 font-weight: bold;
             }
         }
