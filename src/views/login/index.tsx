@@ -4,29 +4,33 @@
  * @Autor: Your Name
  * @Date: 2022-08-17 15:32:50
  * @LastEditors: Your Name
- * @LastEditTime: 2022-08-19 13:46:56
+ * @LastEditTime: 2022-08-20 17:18:52
  */
 import { Button, Form, Input } from 'antd';
 import qs from 'qs';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
+import { useSysInfo } from '../../hooks/state'
 import './index.scss'
 export default function Login() {
+
   const history = useHistory()
   const [form, setFrom] = useState({ name: '', password: '' })
+
   const formItemLayout = {
     labelCol: {
       sm: { span: 4 },
     }
   };
-  const handleSubmit = (props:any) => {
+  const handleSubmit = (props: any) => {
     if (form.name === 'lihang' && form.password === '123') {
-      history.push({pathname:'/main',search:qs.stringify({id:1, type:'edit'}),})
+      history.push({ pathname: '/main', search: qs.stringify({ id: 1, type: 'edit' }), })
     }
   }
   const handleChange = (e: React.FormEvent) => {
     setFrom({ ...form, [(e.target as HTMLInputElement | HTMLSelectElement).name]: (e.target as HTMLInputElement).value })
   }
+  // useSysInfo(form)wo
   return (
     <div className='login app-container' >
       <span className='login-title'>AXXLXXHXX</span>

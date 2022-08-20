@@ -58,7 +58,7 @@
     .container-banner {
         position: relative;
         background-color: #fff;
-        height: 600px;
+        height: 650px;
         display: flex;
         align-items: center;
         border-bottom: 1px solid rgb(240, 240, 240);
@@ -109,6 +109,14 @@
                     margin-right: 24px;
                     &:hover {
                         cursor: pointer;
+                        font-weight: bold;
+                        color: black;
+                    }
+                    &:nth-last-child(1) {
+                        .anticon {
+                            font-size: 20px;
+                            color: rgb(100, 100, 100);
+                        }
                     }
                 }
             }

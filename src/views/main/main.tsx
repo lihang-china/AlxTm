@@ -4,13 +4,13 @@
  * @Autor: Your Name
  * @Date: 2022-08-20 10:31:16
  * @LastEditors: Your Name
- * @LastEditTime: 2022-08-20 13:50:01
+ * @LastEditTime: 2022-08-20 16:06:06
  */
 // import '../../assets/mp4/work.mp4'
 import './main.scss'
 import { Input, Row, Button } from 'antd';
-import { SearchOutlined } from '@ant-design/icons'
-export default function MainContainer() {
+import { SearchOutlined, UserSwitchOutlined } from '@ant-design/icons'
+export default function MainContainer(props: any) {
   const navList = ['帮助中心', '百度一下', '相关工具']
   return (
     <div className="main-container">
@@ -23,6 +23,7 @@ export default function MainContainer() {
         <div className="banner-header">
           <Input style={{ width: '400px' }} bordered={false} placeholder='请输入文档名称' prefix={<SearchOutlined style={{ color: 'rgb(200,200,200)' }} />} />
           <ul>{navList.map(e => (<li key={e}>{e}</li>))}
+            <li onClick={() => props.history.push('/')}><UserSwitchOutlined /></li>
           </ul>
         </div>
         <video className='banner-video' src={require('../../assets/mp4/work.mp4')} autoPlay={true} loop muted={true}></video>
