@@ -4,13 +4,13 @@
  * @Autor: Your Name
  * @Date: 2022-08-17 15:32:50
  * @LastEditors: Your Name
- * @LastEditTime: 2022-08-20 17:18:52
+ * @LastEditTime: 2022-08-22 09:17:19
  */
 import { Button, Form, Input } from 'antd';
 import qs from 'qs';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
-import { useSysInfo } from '../../hooks/state'
+// import { useSysInfo } from '../../hooks/state'
 import './index.scss'
 export default function Login() {
 

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { Menu } from 'antd';
 import './index.scss'
 import { MenuList } from '../../router/index'
@@ -10,9 +10,10 @@ import { DropboxOutlined, DownSquareOutlined } from '@ant-design/icons'
  * @Autor: Your Name
  * @Date: 2022-08-17 15:55:31
  * @LastEditors: Your Name
- * @LastEditTime: 2022-08-20 15:56:07
+ * @LastEditTime: 2022-08-22 10:26:49
  */
 export default function Main(props: any) {
+  const defaultAvtive = props.history.location.pathname
   const handleClick = (e: any) => {
     props.history.push(e.path)
   }
@@ -24,9 +25,9 @@ export default function Main(props: any) {
           <span>Ant Design 2022-8-20</span>
           <span>web</span>
         </div>
-        <Menu mode='vertical' defaultSelectedKeys={['0']} >
+        <Menu mode='vertical' selectedKeys={[defaultAvtive]} >
           {MenuList.map((e, index) => (
-            <Menu.Item onClick={() => handleClick(e)} key={index}>{e.title}</Menu.Item>
+            <Menu.Item icon={e.icon} onClick={() => handleClick(e)} key={e.path}>{e.title}</Menu.Item>
           ))}
         </Menu>
       </div>

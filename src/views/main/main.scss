@@ -54,6 +54,14 @@
             transform: rotate(0deg);
         }
     }
+    @keyframes imgShow {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
     animation: animation 3.5s;
     .container-banner {
         position: relative;
@@ -61,7 +69,7 @@
         height: 650px;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid rgb(240, 240, 240);
+        border-bottom: 1px solid rgb(245, 245, 245);
         .banner-control {
             padding-right: -800px;
             width: 100%;
@@ -105,7 +113,6 @@
                 display: flex;
                 li {
                     font-size: 14px;
-                    list-style: none;
                     margin-right: 24px;
                     &:hover {
                         cursor: pointer;
@@ -127,13 +134,60 @@
             height: 70%;
         }
     }
+    .container-body {
+        margin: 0 auto;
+        width: 60%;
+        h1 {
+            letter-spacing: 6px;
+            text-align: center;
+            font-weight: bold;
+            margin: 150px 0;
+            font-size: 48px;
+            color: rgb(31, 38, 51);
+        }
+        ul {
+            padding: 0;
+            li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                height: 300px;
+                .body-textartea {
+                    width: 300px;
+                    span {
+                        font-size: 18px;
+                        color: rgb(130, 130, 120);
+                    }
+                }
+                h1 {
+                    letter-spacing: 1px;
+                    text-align: center;
+                    font-weight: bold;
+                    margin: 0;
+                    font-size: 32px;
+                    margin-bottom: 8px;
+                }
+                .img-ani {
+                    animation: imgShow 2s;
+                }
+                img {
+                    width: 300px;
+                    height: 100%;
+                }
+                &:nth-child(2n+1) {
+                    flex-direction: row-reverse;
+                }
+            }
+        }
+    }
     .contaienr-footer {
         display: flex;
         align-items: center;
         padding-left: 10%;
+        border-top: 1px solid rgb(235, 235, 235);
         ul {
             li {
-                list-style: none;
                 font-size: 16px;
                 &:nth-child(1) {
                     font-size: 40px;
