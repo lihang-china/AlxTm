@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-08-17 15:32:50
  * @LastEditors: Your Name
- * @LastEditTime: 2022-08-22 09:17:19
+ * @LastEditTime: 2022-08-23 13:49:25
  */
 import { Button, Form, Input } from 'antd';
 import qs from 'qs';
@@ -25,6 +25,7 @@ export default function Login() {
   const handleSubmit = (props: any) => {
     if (form.name === 'lihang' && form.password === '123') {
       history.push({ pathname: '/main', search: qs.stringify({ id: 1, type: 'edit' }), })
+      window.localStorage.setItem('USER_INFO', JSON.stringify(form))
     }
   }
   const handleChange = (e: React.FormEvent) => {

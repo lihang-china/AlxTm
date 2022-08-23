@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-08-20 10:31:16
  * @LastEditors: Your Name
- * @LastEditTime: 2022-08-22 15:33:04
+ * @LastEditTime: 2022-08-23 13:44:40
  */
 // import '../../assets/mp4/work.mp4'
 import { imgGroup } from './common';
@@ -52,7 +52,6 @@ export default function MainContainer(props: any) {
             ))
           }
         </ul>
-
       </div>
       <div className="contaienr-footer">
         <div className="footer-left">
