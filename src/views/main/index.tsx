@@ -10,7 +10,7 @@ import { DropboxOutlined, DownSquareOutlined, UpSquareOutlined } from '@ant-desi
  * @Autor: Your Name
  * @Date: 2022-08-17 15:55:31
  * @LastEditors: Your Name
- * @LastEditTime: 2022-08-23 19:22:09
+ * @LastEditTime: 2022-08-24 16:44:31
  */
 import Changeuser from './components/ChangeUser'
 export default function Main(props: any) {
@@ -27,7 +27,8 @@ export default function Main(props: any) {
       <Changeuser clickEvent={clickEvent} />
       <div className="main-menu">
         <div className="menu-header">
-          <span onClick={handleClick}><DropboxOutlined className="header-icon" />Funct {clickEvent.open ? <UpSquareOutlined className="header-btn" /> : <DownSquareOutlined className="header-btn" />}</span>
+          <span onClick={handleClick}><DropboxOutlined className="header-icon" />Funct
+            {clickEvent.open ? <UpSquareOutlined className="header-btn" /> : <DownSquareOutlined className="header-btn" />}</span>
           <span>Ant Design 2022-8-20</span>
           <span>web</span>
         </div>
