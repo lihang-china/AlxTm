@@ -1,4 +1,23 @@
+.status-loading {
+    position: fixed;
+    z-index: 9999999;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    animation: loading 3s;
+    @keyframes loading {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
 .main {
+    padding: 0;
     @keyframes change {
         0% {
             margin-left: -350px;
@@ -13,7 +32,7 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        border-right: 1px solid rgb(240, 240, 240);
+        border-right: 1px solid rgba(240, 240, 240, 0.5);
         .menu-header {
             height: 150px;
             padding: 24px;
@@ -61,37 +80,63 @@
                 }
             }
         }
-        .ant-menu {
-            animation: change 1.5s;
-            width: 100%;
-            height: 100%;
-            font-size: 16px;
-            border: 0;
-            li {
-                display: flex;
-                align-items: center;
-                border-radius: 8px;
-                line-height: 8px;
-                padding: 16px;
-                height: 44px;
-                margin: 4px 20px !important;
-                .anticon {
-                    color: rgb(150, 150, 150);
-                }
-                &:hover {
-                    color: rgb(70, 70, 70);
-                    background: rgb(248, 248, 248);
-                }
-            }
-            .ant-menu-item-selected {
-                background: rgb(238, 238, 238);
-                color: rgb(31, 38, 51);
-                font-weight: bold;
-            }
-        }
     }
     .main-container {
+        position: relative;
         flex-grow: 1;
-        overflow-y: scroll;
+        overflow-y: auto;
+        .router-page {
+            margin-top: 90px;
+            height: calc(100% - 90px);
+            // overflow: auto;
+            background-color: rgb(255, 255, 255);
+        }
+        .banner-header {
+            background-color: #fff;
+            height: 90px;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            .change-moudel {
+                display: flex;
+                align-items: center;
+                margin-right: 48px;
+                span {
+                    display: block;
+                    width: 40px;
+                    text-align: center;
+                    line-height: 35px;
+                    height: 35px;
+                    border-radius: 4px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+            ul {
+                margin: 0;
+                margin-left: auto;
+                display: flex;
+                li {
+                    font-size: 14px;
+                    margin-right: 24px;
+                    &:hover {
+                        cursor: pointer;
+                        font-weight: bold;
+                        color: black;
+                    }
+                    &:nth-last-child(1) {
+                        .anticon {
+                            font-size: 20px;
+                            color: rgb(100, 100, 100);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -4,11 +4,13 @@
  * @Autor: Your Name
  * @Date: 2022-08-17 14:48:14
  * @LastEditors: Your Name
- * @LastEditTime: 2022-08-17 19:46:49
+ * @LastEditTime: 2022-09-07 18:19:53
  */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './assets/style/ant-design.scss'
+import './assets/style/ant-design-black.scss'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.min.css';

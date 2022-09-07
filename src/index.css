@@ -69,8 +69,19 @@ code {
 .app-container {
     height: 100%;
     width: 100%;
+    padding: 24px;
 }
 
-.ant-btn {
-    border-radius: 6px !important;
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
 }
