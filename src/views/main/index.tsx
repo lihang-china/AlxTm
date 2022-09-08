@@ -5,13 +5,14 @@ import Changeuser from './components/ChangeUser'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { DropboxOutlined, DownSquareOutlined, UpSquareOutlined, SearchOutlined, UserSwitchOutlined } from '@ant-design/icons'
 import './index.scss'
+import img from '../../assets/img/light.png'
 /*
  * @Descriptin: 
  * @Version: 0.1
  * @Autor: Your Name
  * @Date: 2022-08-17 15:55:31
  * @LastEditors: Your Name
- * @LastEditTime: 2022-09-08 11:25:15
+ * @LastEditTime: 2022-09-08 13:16:00
  */
 export default function Main(props: any) {
   const navList = ['帮助中心', '百度一下', '相关工具']
@@ -56,9 +57,10 @@ export default function Main(props: any) {
     }, 3000)
     setTimer(timeOut)
   }
+  
   return (
     <div className={status === 'default' ? 'main app-container moudel-default' : status === 'black' ? 'main app-container moudel-black' : ''} >
-      {loading ? <div className="status-loading" style={bgColor === 'black' ? { background: 'rgb(13, 17, 23)' } : { background: 'rgb(250, 250, 250)' }}></div> : ''}
+      {loading ? <div className="status-loading" style={bgColor === 'black' ? { background: 'rgb(13, 17, 23)' } : { background: 'rgb(250, 250, 250)' }}> <img src={require('../../assets/img/light.png')} alt="" /><div className="loading" ><span style={bgColor === 'black' ? {animation: 'black 3.5s forwards'}:{animation: 'default 3.5s forwards'}}></span> </div></div>  : ''}
       <Changeuser clickEvent={clickEvent} />
       <div className="main-menu">
         <div className="menu-header">
