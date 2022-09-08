@@ -1,32 +1,30 @@
-import { Suspense, useState } from "react"
-import { Menu } from 'antd';
-import './index.scss'
+import { Suspense, useEffect, useState } from "react"
+import { Menu, Input } from 'antd';
 import { MenuList } from '../../router/index'
+import Changeuser from './components/ChangeUser'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import { DropboxOutlined, DownSquareOutlined, UpSquareOutlined } from '@ant-design/icons'
-import { Input, Button } from 'antd';
-import { SearchOutlined, UserSwitchOutlined } from '@ant-design/icons'
+import { DropboxOutlined, DownSquareOutlined, UpSquareOutlined, SearchOutlined, UserSwitchOutlined } from '@ant-design/icons'
+import './index.scss'
 /*
  * @Descriptin: 
  * @Version: 0.1
  * @Autor: Your Name
  * @Date: 2022-08-17 15:55:31
  * @LastEditors: Your Name
- * @LastEditTime: 2022-09-07 19:11:18
+ * @LastEditTime: 2022-09-08 09:32:15
  */
-import Changeuser from './components/ChangeUser'
 export default function Main(props: any) {
   const navList = ['帮助中心', '百度一下', '相关工具']
   const [clickEvent, setOpen] = useState({ open: false })
   const defaultAvtive = props.history.location.pathname
   const [status, setStatus] = useState('default')
   const [loading, setLoading] = useState(false)
-  const handleOut = (e: any) => {
-    props.history.push(e.key)
-  }
-  const handleClick = (e: any) => {
-    setOpen({ ...e, open: !clickEvent.open })
-  }
+  const [tiemr, setTimer] = useState<any>(null)
+  const [bgColor, setBgcolor] = useState('default')
+  useEffect(() => {
+    console.log(tiemr, 'tiemrermeirer');
+
+  }, [tiemr])
   interface items {
     label: React.ReactNode,
     key: React.Key,
@@ -40,17 +38,27 @@ export default function Main(props: any) {
       icon: e.icon
     })
   })
+  const handleOut = (e: any) => {
+    props.history.push(e.key)
+  }
+  const handleClick = (e: any) => {
+    setOpen({ ...e, open: !clickEvent.open })
+  }
   const moudelChange = () => {
+    bgColor === 'default' ? setBgcolor('black') : setBgcolor('default')
     setLoading(true)
-    setTimeout(() => {
+    let timeOut = setTimeout(() => {
       status === 'default' ? setStatus('black') : setStatus('default')
-      setLoading(false)
+      setTimeout(() => {
+        setLoading(false)
+      }, 500)
+      setTimer(null)
     }, 3000)
-
+    setTimer(timeOut)
   }
   return (
     <div className={status === 'default' ? 'main app-container moudel-default' : status === 'black' ? 'main app-container moudel-black' : ''} >
-      {loading ? <div className="status-loading" style={status === 'default'? { background: 'rgb(20,20,20)' } : { background: 'rgb(250,250,250)' }}></div> : ''}
+      {loading ? <div className="status-loading" style={bgColor === 'black' ? { background: 'rgb(20,20,20)' } : { background: 'rgb(250,250,250)' }}></div> : ''}
       <Changeuser clickEvent={clickEvent} />
       <div className="main-menu">
         <div className="menu-header">
