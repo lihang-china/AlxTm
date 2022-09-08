@@ -1,13 +1,16 @@
 .moudel-black {
-    $primary_color: rgb(6, 75, 131);
-    $primary_border_color: rgba(6, 75, 131, 0.8);
+    $primary_color: rgb(35, 134, 45);
+    $primary_border_color: rgba(35, 134, 45, 0.8);
     $danger_color: rgb(245, 63, 63);
     $danger_border_color: rgba(245, 63, 63, 0.8);
     $dashed_color: rgb(150, 152, 154);
     $dashed_color_hover: rgb(90, 92, 94);
     $ant_radius: 4px;
+    * {
+        color: rgb(240, 246, 252);
+    }
     .ant-table {
-        background: rgba(255, 255, 255, 0.1) !important;
+        background: rgb(13, 17, 23) !important;
         border-radius: 6px !important;
         .ant-table-cell-row-hover {
             background: rgba(255, 255, 255, 0.1) !important;
@@ -16,7 +19,7 @@
             thead {
                 tr {
                     th {
-                        background: rgba(255, 255, 255, 0.1) !important;
+                        background: rgb(22, 27, 34) !important;
                         font-weight: bold;
                         color: rgb(200, 200, 200);
                         border-color: rgba(255, 255, 255, 0.2) !important;
@@ -33,20 +36,23 @@
             }
         }
     }
+    input {
+        color: rgb(240, 246, 252) !important;
+    }
     .ant-input {
         border-radius: $ant_radius !important;
-        background: rgba(255, 255, 255, 0.1) !important;
+        background: rgb(33, 38, 45) !important;
         border-color: rgba(255, 255, 255, 0.1) !important;
         &:hover {
             border-color: $primary_color !important;
         }
     }
     .ant-input-borderless {
-        background: rgba(255, 255, 255, 0) !important;
+        background: rgba(33, 38, 45, 0) !important;
     }
     .ant-select {
         .ant-select-selector {
-            background: rgba(255, 255, 255, 0.1) !important;
+            background: rgb(33, 38, 45) !important;
             border-color: rgba(255, 255, 255, 0.1) !important;
             border-radius: $ant_radius !important;
             &:hover {
@@ -93,18 +99,18 @@
         }
         button {
             border-color: rgb(55, 55, 55) !important;
-            background: rgb(55, 55, 55) !important;
+            background: rgb(22, 27, 34) !important;
         }
         li {
             * {
                 color: rgb(200, 200, 200) !important;
             }
-            background: rgb(55, 55, 55) !important;
-            border-color: rgb(55, 55, 55) !important;
+            background: rgb(22, 27, 34) !important;
+            border-color: rgb(22, 27, 34) !important;
             border-radius: 50%;
             input {
-                background: rgb(55, 55, 55) !important;
-                border-color: rgb(55, 55, 55) !important;
+                background: rgb(22, 27, 34) !important;
+                border-color: rgb(22, 27, 34) !important;
             }
             &:hover {
                 border-color: $primary_color !important;
@@ -134,19 +140,18 @@
         padding-bottom: 24px !important;
     }
     .router-page {
-        background-color: rgb(20, 20, 20) !important;
+        background-color: rgb(13, 17, 23) !important;
     }
     .banner-header {
-        background-color: rgb(30, 30, 30) !important;
+        background-color: rgb(22, 27, 34) !important;
+        border: 0 !important;
     }
     .main-menu {
-        background-color: rgb(30, 30, 30) !important;
+        background-color: rgb(22, 27, 34) !important;
+        // border: 0 !important;
     }
     .ant-menu {
-        background: rgb(30, 30, 30) !important;
-    }
-    * {
-        color: rgb(218, 214, 207);
+        background: rgb(22, 27, 34) !important;
     }
     .ant-menu {
         animation: change 1.5s;
@@ -167,29 +172,47 @@
             }
             &:hover {
                 color: rgb(70, 70, 70) !important;
-                background: rgb(50, 50, 50) !important;
+                background: rgb(33, 38, 45) !important;
             }
         }
         .ant-menu-item-selected {
-            background: rgb(50, 50, 50) !important;
+            background: rgb(33, 38, 45) !important;
             color: rgb(31, 38, 51) !important;
             font-weight: bold !important;
         }
     }
     .changeuser-components {
-        background-color: rgb(20, 20, 20) !important;
+        background-color: rgb(13, 17, 23) !important;
         box-shadow: 0 0 5px 0 rgb(40, 40, 40) !important;
     }
     .container-banner {
-        background-color: rgb(20, 20, 20) !important;
+        background-color: rgb(13, 17, 23) !important;
     }
     .banner-video {
         border-radius: 50%;
     }
     .main-container {
-        background-color: rgb(22, 22, 22) !important;
+        background-color: rgb(13, 17, 23) !important;
         h1 {
-            color: rgb(220, 220, 220) !important;
+            color: rgb(240, 246, 252) !important;
+        }
+    }
+    .router-page {
+        background-color: rgb(13, 17, 23) !important;
+    }
+    .body-textartea {
+        span {
+            color: rgba(240, 246, 252, 0.6) !important;
+        }
+    }
+    .nav-list {
+        li {
+            &:hover {
+                cursor: pointer;
+                font-weight: bold;
+                color: rgb(88, 166, 255) !important;
+                border-bottom: 2px solid rgb(88, 166, 255) !important;
+            }
         }
     }
 }

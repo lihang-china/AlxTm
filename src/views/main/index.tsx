@@ -11,7 +11,7 @@ import './index.scss'
  * @Autor: Your Name
  * @Date: 2022-08-17 15:55:31
  * @LastEditors: Your Name
- * @LastEditTime: 2022-09-08 09:32:15
+ * @LastEditTime: 2022-09-08 11:25:15
  */
 export default function Main(props: any) {
   const navList = ['帮助中心', '百度一下', '相关工具']
@@ -51,14 +51,14 @@ export default function Main(props: any) {
       status === 'default' ? setStatus('black') : setStatus('default')
       setTimeout(() => {
         setLoading(false)
-      }, 500)
+      },500)
       setTimer(null)
     }, 3000)
     setTimer(timeOut)
   }
   return (
     <div className={status === 'default' ? 'main app-container moudel-default' : status === 'black' ? 'main app-container moudel-black' : ''} >
-      {loading ? <div className="status-loading" style={bgColor === 'black' ? { background: 'rgb(20,20,20)' } : { background: 'rgb(250,250,250)' }}></div> : ''}
+      {loading ? <div className="status-loading" style={bgColor === 'black' ? { background: 'rgb(13, 17, 23)' } : { background: 'rgb(250, 250, 250)' }}></div> : ''}
       <Changeuser clickEvent={clickEvent} />
       <div className="main-menu">
         <div className="menu-header">
@@ -72,10 +72,10 @@ export default function Main(props: any) {
       <div className="main-container">
         <div className="banner-header" style={props.location.pathname !== '/main/index' ? { borderBottom: '1px solid rgba(240, 240, 240, 0.5)' } : {}}>
           <div className="change-moudel">
-            <span onClick={moudelChange} style={status === 'default' ? { background: 'rgb(0,0,0)', color: 'rgb(255,255,255)' } : { background: 'rgb(255,255,255)', color: 'rgb(0,0,0)' }}>{status === 'default' ? '暗夜' : '默认'}</span>
+            <span onClick={moudelChange} style={status === 'default' ? { background: 'rgb(22, 27, 34)', color: 'rgb(255,255,255)' } : { background: 'rgb(240, 246, 252)', color: 'rgb(0,0,0)' }}>{status === 'default' ? '暗夜' : '默认'}</span>
           </div>
           <Input style={{ width: '400px' }} bordered={false} placeholder='请输入文档名称' prefix={<SearchOutlined style={{ color: 'rgb(200,200,200)' }} />} />
-          <ul>{navList.map(e => (<li key={e}>{e}</li>))}
+          <ul className="nav-list">{navList.map(e => (<li key={e}>{e}</li>))}
             <li onClick={() => props.history.push('/gis')}><UserSwitchOutlined /></li>
           </ul>
         </div>
