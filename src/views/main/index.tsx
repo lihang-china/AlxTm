@@ -72,7 +72,7 @@ export default function Main(props: any) {
         <Menu mode='vertical' onClick={handleOut} items={items} selectedKeys={[defaultAvtive]} />
       </div>
       <div className="main-container">
-        <div className="banner-header" style={props.location.pathname !== '/main/index' ? { borderBottom: '1px solid rgba(240, 240, 240, 0.5)' } : {}}>
+        <div className="banner-header" style={props.location.pathname !== '/main/index' ? { borderBottom: '1px solid rgba(240, 240, 240, 0.5)' } : {borderBottom: '1px solid rgba(240, 240, 240, 0)'}}>
           <div className="change-moudel">
             <span onClick={moudelChange} style={status === 'default' ? { background: 'rgb(22, 27, 34)', color: 'rgb(255,255,255)' } : { background: 'rgb(240, 246, 252)', color: 'rgb(0,0,0)' }}>{status === 'default' ? '暗夜' : '默认'}</span>
           </div>
