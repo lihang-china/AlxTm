@@ -6,14 +6,13 @@
     top: 0;
     left: 0;
     animation: loading 3.5s;
-    img{
+    img {
         position: fixed;
         z-index: 9999;
-        top:calc(50% - 80px);
-        left:calc(8% - 100px);
-        width:80px;
-    height:80px;
-
+        top: calc(50% - 80px);
+        left: calc(8% - 100px);
+        width: 80px;
+        height: 80px;
     }
     @keyframes loading {
         0% {
@@ -59,10 +58,7 @@
             }
         }
     }
-    
 }
-
-
 
 .main {
     padding: 0 !important;
