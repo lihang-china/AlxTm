@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-08-18 14:57:01
  * @LastEditors: Your Name
- * @LastEditTime: 2022-08-18 15:11:52
+ * @LastEditTime: 2022-11-25 10:30:09
  */
 import React from "react";
 interface MouseTracker {
@@ -26,8 +26,6 @@ class MouseTracker extends React.Component {
   render(): React.ReactNode {
     return (
       <div style={{ height: '100%', width: '100%' }} onMouseMove={this.handleMouseMove}>
-        {/* <p>当前鼠标的位置{this.state.x},{this.state.y}</p> */}
-        {this.props.render(this.state)}
       </div>
     )
   }

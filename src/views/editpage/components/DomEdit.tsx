@@ -1,76 +1,120 @@
-import { Key, useEffect, useRef, useState } from "react"
-import { defaultDom } from './setting'
-/*
- * @Descriptin: 
- * @Version: 0.1
- * @Autor: Your Name
- * @Date: 2022-11-24 11:10:02
- * @LastEditors: Your Name
- * @LastEditTime: 2022-11-24 19:20:24
- */
+import { v4 as uuidv4 } from 'uuid'
+import { Key, useState } from "react"
+import { modalDom } from './setting'
+import editStyleModal from './editStyleModal'
+import ClickMenu from './ClickMenu'
 import './DomEdit.scss'
-import { Button } from 'antd'
-
 export default function DomEdit(props: any) {
-  const [domList, changeList] = useState<any>([])
-  const [dom, setDom] = useState<any>()
-  const [isDown, setDown] = useState<Boolean>(false)
-  let state = useRef<Boolean>()
-  useEffect(() => {
-    state.current = isDown || false
+  // console.log(uuidv4(), 'asdasd');
 
-  }, [isDown])
-  const defaultData = defaultDom
-  const handleAddDom = () => {
+  const [domList, changeList] = useState<any>([])
+  const [open, setOpen] = useState(false)
+  const [clickEvent, setClickEvent] = useState({ open: false })
+  const Model = editStyleModal
+  const myCom = <div className="card_group">
+    {
+      modalDom.map((e: { title: String | '', style: any }, index: Key | null | undefined) => {
+        return (
+          <div className="card" onClick={() => {
+            handleClickCard(e)
+          }} style={e.style} key={index}>
+            <div className="title" style={e.style.title}>{e.title ? e.title : 'Titile'}</div>
+          </div>
+        )
+      })
+    }
+  </div>
+  document.addEventListener('selectstart', function (e) {
+    e.preventDefault();
+  })
+
+  const handleClickCard = (item: Object) => {
     let arr = [...domList]
-    arr.push(defaultData)
+    arr.push(item)
     changeList(arr)
   }
-  const getDoms = (event: any, index: Key | null | undefined) => {
-    let copyDom: any = document.getElementsByClassName('dom_item')[index as 0].cloneNode(true)
+  const getDoms = (event: any, index: number) => {
+    document.oncontextmenu = function (e) {/*屏蔽浏览器默认右键事件*/
+      e = e || window.event;
+      return false;
+    };
+    let isDown = false
+    let copyDom: any = document.getElementsByClassName('dom_item')[index as 0] ? document.getElementsByClassName('dom_item')[index as 0].cloneNode(true) : ''
     let parent = document.getElementsByClassName('domedit_component')[0]
-    let fn = (event: any) => {
-      copyDom.style.position = 'absolute'
-      copyDom.style.top = `${event.pageY - 50}px`
-      copyDom.style.left = `${event.pageX - 50}px`
-      copyDom.setAttribute('class', 'copy_item')
-    }
-    fn(event)
-    parent.appendChild(copyDom)
-    document.onmousemove = (e) => {
-      fn(e)
-      let parentDom: any = document.getElementsByClassName('domedit_component')[0]
-      if (copyDom.offsetLeft > parentDom.offsetWidth) {
-        copyDom.style.opacity = '1'
-        setDown(true)
-      } else {
-        copyDom.style.opacity = '0.3'
-        setDown(false)
-      }
-    }
-    document.onmouseup = () => {
-      document.onmousemove = null
-      console.log(state, isDown, 'isDown');
-      if (state.current) {
+    let parentDom: any = document.getElementsByClassName('domedit_component')[0]
+    let eventData: any = { pageX: 0 }
+    copyDom.style.opacity = '0.3'
+    copyDom.style.cursor = 'not-allowed'
+    if (event.buttons === 1) {
+      if (copyDom) {
+        let fn = (event: any) => {
+          copyDom.style.position = 'absolute'
+          copyDom.style.top = `${event.pageY - 50}px`
+          copyDom.style.left = `${event.pageX - 50}px`
+          copyDom.setAttribute('class', 'copy_item')
+        }
+        fn(event)
+        parent.appendChild(copyDom || null)
+        document.onmousemove = (e) => {
+          setClickEvent({ ...event, open: false })
+          console.log(eventData.pageX, 'asdadadsa');
 
-      } else {
-        if (document.getElementsByClassName('copy_item')[0]?.nodeType === 1) {
-          let dom = document.getElementsByClassName('copy_item')
-          parent.removeChild(dom[dom.length - 1])
+          if (eventData.pageX === 0 || Math.abs(e.pageX - eventData.pageX) === 20) {
+
+            eventData = e
+          }
+          fn(e)
+          if (copyDom.offsetLeft > parentDom.offsetWidth) {
+            copyDom.style.opacity = '1'
+            copyDom.style.cursor = 'pointer'
+            isDown = true
+          } else {
+            copyDom.style.opacity = '0.3'
+            copyDom.style.cursor = 'not-allowed'
+            isDown = false
+          }
+        }
+        document.onmouseup = () => {
+          document.onmousemove = null
+          if (isDown) {
+            console.log('----------------- 移入 -----------------');
+          } else {
+            if (event.pageX < parentDom.offsetWidth && document.getElementsByClassName('copy_item')[0]?.nodeType === 1) {
+              let dom = document.getElementsByClassName('copy_item')
+              parent.removeChild(dom[dom.length - 1])
+            }
+          }
         }
       }
+    } else {
+      handlerRight(event, index)
     }
+  }
+  const handlerRight = (event: any, index: number) => {
+    setClickEvent({ ...event, open: true, index: index })
+    document.onclick = (() => {
+      setClickEvent({ ...event, open: false })
+    })
+  }
+  const handleMenuClick = (e: any) => {
+    let arr = [...domList]
+    arr.splice(e.index, 1)
+    changeList(arr)
   }
   return (
     <div className="domedit_component" >
+      <ClickMenu clickEvent={clickEvent} handleClick={(e: any) => { handleMenuClick(e) }} />
+      <Model component={myCom} open={open} handleClose={() => {
+        setOpen(false)
+      }} />
       <div className="component_header">
-        <span >Components {String(isDown)}</span><span onClick={handleAddDom}>+</span>
+        <span >Components</span><span onClick={() => { setOpen(true) }}>+</span>
       </div>
       <div className="component_group" >
         {
-          domList.map((e: { title: String | '', style: any }, index: Key | null | undefined) => {
+          domList.map((e: { title: String | '', style: any }, index: number) => {
             return (
-              <div className="dom_item" onMouseDown={(event) => { getDoms(event, index) }} style={e.style} key={index}>
+              <div className="dom_item" onMouseDown={(event) => { getDoms(event, index) }} style={e.style} key={String(index)}>
                 <div style={e.style.title}>{e.title ? e.title : 'Titile'}</div>
               </div>
             )

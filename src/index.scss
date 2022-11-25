@@ -11,6 +11,25 @@
     background: rgba(182, 182, 182, 0.856);
 }
 
+.myModal {
+    .ant-modal-content {
+        border-radius: 12px !important;
+        background-color: rgb(35, 35, 35) !important;
+        overflow: hidden;
+        .ant-modal-title {
+            color: #fff;
+        }
+        .anticon-close {
+            color: #fff;
+        }
+        .ant-modal-header,
+        .ant-modal-footer {
+            background-color: transparent !important;
+            border: 0 !important;
+        }
+    }
+}
+
 @keyframes fadeIn {
     0% {
         transform: scale(0.4);
