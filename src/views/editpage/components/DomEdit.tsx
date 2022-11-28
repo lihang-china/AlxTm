@@ -42,7 +42,6 @@ export default function DomEdit(props: any) {
     let copyDom: any = document.getElementsByClassName('dom_item')[index as 0] ? document.getElementsByClassName('dom_item')[index as 0].cloneNode(true) : ''
     let parent = document.getElementsByClassName('domedit_component')[0]
     let parentDom: any = document.getElementsByClassName('domedit_component')[0]
-    let eventData: any = { pageX: 0 }
     copyDom.style.opacity = '0.3'
     copyDom.style.cursor = 'not-allowed'
     if (event.buttons === 1) {
@@ -52,17 +51,21 @@ export default function DomEdit(props: any) {
           copyDom.style.top = `${event.pageY - 50}px`
           copyDom.style.left = `${event.pageX - 50}px`
           copyDom.setAttribute('class', 'copy_item')
+          if (document.querySelectorAll('.copy_item').length >= 1) {
+            document.querySelectorAll('.copy_item').forEach((e: any) => {
+              if (Math.abs(Number(copyDom.style.left.split('px')[0]) - Number(e.style.left.split('px')[0])) <= 20) {
+                copyDom.style.left = e.style.left
+              }
+              if (Math.abs(Number(copyDom.style.top.split('px')[0]) - Number(e.style.top.split('px')[0])) <= 20) {
+                copyDom.style.top = e.style.top
+              }
+            })
+          }
         }
         fn(event)
         parent.appendChild(copyDom || null)
         document.onmousemove = (e) => {
           setClickEvent({ ...event, open: false })
-          console.log(eventData.pageX, 'asdadadsa');
-
-          if (eventData.pageX === 0 || Math.abs(e.pageX - eventData.pageX) === 20) {
-
-            eventData = e
-          }
           fn(e)
           if (copyDom.offsetLeft > parentDom.offsetWidth) {
             copyDom.style.opacity = '1'
