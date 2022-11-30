@@ -4,15 +4,15 @@
  * @Autor: Your Name
  * @Date: 2022-11-24 11:21:17
  * @LastEditors: Your Name
- * @LastEditTime: 2022-11-25 11:21:19
+ * @LastEditTime: 2022-11-30 19:56:21
  */
 const defaultDom = {
   title: '',
   id: '',
-  color: '',
+  color: '#fff',
   style: {
     width: '80%',
-    maxWidth: '300px',
+    maxWidth: '280px',
     height: '180px',
     background: 'rgba(19,203,203,0.5)',
     margin: '6px',
@@ -32,10 +32,12 @@ const defaultDom = {
 const modalDom = [{
   title: '模板一',
   id: '',
-  color: '',
+  tShow: true,
+  color: '#fff',
+  type: 'Button',
   style: {
     width: '80%',
-    maxWidth: '300px',
+    maxWidth: '280px',
     height: '180px',
     background: 'rgba(19,203,203,0.5)',
     margin: '6px',
@@ -55,10 +57,12 @@ const modalDom = [{
 {
   title: '模板二',
   id: '',
-  color: '',
+  color: '#fff',
+  type: 'Text',
+  tShow: true,
   style: {
     width: '80%',
-    maxWidth: '300px',
+    maxWidth: '280px',
     height: '180px',
     background: 'rgba(20,20,20,0.5)',
     margin: '6px',
@@ -72,16 +76,16 @@ const modalDom = [{
       width: '100%',
       background: 'rgba(80,80,80,0.2)',
     }
-
   }
 },
 {
   title: '模板三',
   id: '',
-  color: '',
+  color: '#fff',
+  type: 'Text',
   style: {
     width: '80%',
-    maxWidth: '300px',
+    maxWidth: '280px',
     height: '180px',
     background: 'rgba(154,89,181,0.5)',
     margin: '6px',
@@ -95,16 +99,16 @@ const modalDom = [{
       width: '100%',
       background: 'rgba(154,89,181,0.2)',
     }
-
   }
 },
 {
   title: '模板四',
   id: '',
-  color: '',
+  color: '#fff',
+  type: 'Text',
   style: {
     width: '80%',
-    maxWidth: '300px',
+    maxWidth: '280px',
     height: '180px',
     background: 'rgba(53,152,219,0.5)',
     margin: '6px',
@@ -124,10 +128,11 @@ const modalDom = [{
 {
   title: '模板五',
   id: '',
-  color: '',
+  color: '#fff',
+  type: 'Text',
   style: {
     width: '80%',
-    maxWidth: '300px',
+    maxWidth: '280px',
     height: '180px',
     background: 'rgba(231,77,61,0.5)',
     margin: '6px',
@@ -147,10 +152,11 @@ const modalDom = [{
 {
   title: '模板六',
   id: '',
-  color: '',
+  color: '#fff',
+  type: 'Text',
   style: {
     width: '80%',
-    maxWidth: '300px',
+    maxWidth: '280px',
     height: '180px',
     background: 'rgba(243,44,44,0.5)',
     margin: '6px',

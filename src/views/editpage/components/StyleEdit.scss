@@ -1,0 +1,50 @@
+@keyframes animationLeft {
+    0% {
+        right: -300px;
+    }
+    100% {
+        right: 0;
+    }
+}
+
+.styleedit_conponent {
+    width: 300px;
+    height: 100%;
+    background-color: rgb(50, 50, 50);
+    animation: animationLeft 0.5s;
+    position: absolute;
+    right: 0;
+    .styleedit_main {
+        padding: 16px;
+        textarea {
+            border: 0;
+            background-color: rgb(55, 57, 59);
+            padding: 6px;
+        }
+    }
+    .styleedit_header {
+        height: auto;
+        border-bottom: 1px solid rgb(200, 200, 200);
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 18px;
+        span {
+            color: #fff;
+            display: block;
+            line-height: 20px;
+            transition: 0.3s all;
+            &:nth-child(1) {
+                font-size: 20px;
+                font-weight: bold;
+            }
+            &:nth-child(2) {
+                &:hover {
+                    cursor: pointer;
+                    .anticon {
+                        color: rgba(240, 240, 240, 0.8);
+                    }
+                }
+            }
+        }
+    }
+}
