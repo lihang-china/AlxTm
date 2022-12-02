@@ -1,3 +1,5 @@
+$bgc:rgb(50, 52, 54);
+$fontColor:rgb(250, 250, 250);
 @keyframes animationLeft {
     0% {
         right: -300px;
@@ -10,12 +12,53 @@
 .styleedit_conponent {
     width: 300px;
     height: 100%;
-    background-color: rgb(50, 50, 50);
+    background-color: $bgc;
     animation: animationLeft 0.5s;
     position: absolute;
     right: 0;
+    display: flex;
+    flex-direction: column;
     .styleedit_main {
-        padding: 16px;
+        overflow: auto;
+        padding: 12px;
+        .ant-form {
+            padding: 10px;
+            .ant-form-item {
+                margin: 0;
+                padding-bottom: 12px;
+                margin-bottom: 12px;
+                border-bottom: 1px solid rgba(220, 220, 220, 0.2);
+                .sketch-picker {
+                    margin: 0 auto;
+                    width: calc(100% - 20px) !important;
+                }
+            }
+            .ant-input {
+                // width: 90%;
+                border-radius: 6px;
+                background-color: rgb(248, 252, 255);
+                &:hover {
+                    background-color: rgb(235, 235, 235) !important;
+                }
+            }
+            .ant-select {
+                // width: 90%;
+                overflow: hidden;
+                border-radius: 6px !important;
+                background-color: rgb(248, 252, 255);
+                &:hover {
+                    background-color: rgb(235, 235, 235) !important;
+                }
+            }
+            .ant-input-number {
+                width: 100%;
+                border-radius: 6px;
+                background-color: rgb(248, 252, 255);
+            }
+            .ant-form-item-label>label {
+                color: $fontColor;
+            }
+        }
         textarea {
             border: 0;
             background-color: rgb(55, 57, 59);
@@ -29,7 +72,7 @@
         justify-content: space-between;
         padding: 12px 18px;
         span {
-            color: #fff;
+            color: $fontColor;
             display: block;
             line-height: 20px;
             transition: 0.3s all;

@@ -5,9 +5,8 @@
  * @Autor: Your Name
  * @Date: 2022-08-23 18:27:35
  * @LastEditors: Your Name
- * @LastEditTime: 2022-11-25 14:51:42
+ * @LastEditTime: 2022-12-02 10:31:43
  */
-import { Button } from 'antd'
 import { useEffect, useState } from 'react'
 import './ClickMenu.scss'
 export default function ClickMenu(props: { clickEvent: any, handleClick: Function }) {

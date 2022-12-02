@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-11-24 11:21:17
  * @LastEditors: Your Name
- * @LastEditTime: 2022-11-30 19:56:21
+ * @LastEditTime: 2022-12-01 10:24:43
  */
 const defaultDom = {
   title: '',
@@ -15,7 +15,6 @@ const defaultDom = {
     maxWidth: '280px',
     height: '180px',
     background: 'rgba(19,203,203,0.5)',
-    margin: '6px',
     borderRadius: '6px',
     border: '1px solid rgb(19,203,203)',
     overflow: 'hidden',
@@ -40,7 +39,6 @@ const modalDom = [{
     maxWidth: '280px',
     height: '180px',
     background: 'rgba(19,203,203,0.5)',
-    margin: '6px',
     borderRadius: '6px',
     border: '1px solid rgb(19,203,203)',
     overflow: 'hidden',
@@ -65,7 +63,6 @@ const modalDom = [{
     maxWidth: '280px',
     height: '180px',
     background: 'rgba(20,20,20,0.5)',
-    margin: '6px',
     borderRadius: '6px',
     border: '1px solid rgb(20,20,20)',
     overflow: 'hidden',
@@ -84,13 +81,10 @@ const modalDom = [{
   color: '#fff',
   type: 'Text',
   style: {
-    width: '80%',
-    maxWidth: '280px',
-    height: '180px',
+    width: '100%',
+    height: '90px',
     background: 'rgba(154,89,181,0.5)',
-    margin: '6px',
-    borderRadius: '6px',
-    border: '1px solid rgb(154,89,181)',
+    borderRadius: '0px',
     overflow: 'hidden',
     backdropFilter: 'saturate(100%) blur(10px)',
     title: {
@@ -111,7 +105,6 @@ const modalDom = [{
     maxWidth: '280px',
     height: '180px',
     background: 'rgba(53,152,219,0.5)',
-    margin: '6px',
     borderRadius: '6px',
     border: '1px solid rgb(53,152,219)',
     overflow: 'hidden',
@@ -135,7 +128,6 @@ const modalDom = [{
     maxWidth: '280px',
     height: '180px',
     background: 'rgba(231,77,61,0.5)',
-    margin: '6px',
     borderRadius: '6px',
     border: '1px solid rgb(231,77,61)',
     overflow: 'hidden',
@@ -159,7 +151,6 @@ const modalDom = [{
     maxWidth: '280px',
     height: '180px',
     background: 'rgba(243,44,44,0.5)',
-    margin: '6px',
     borderRadius: '6px',
     border: '1px solid rgb(243,44,44)',
     overflow: 'hidden',

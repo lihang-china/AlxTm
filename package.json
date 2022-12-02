@@ -17,6 +17,7 @@
         "ol": "^7.1.0",
         "react": "^18.2.0",
         "react-ace": "^10.0.0",
+        "react-color": "^2.19.3",
         "react-dom": "^18.2.0",
         "react-quill": "^2.0.0",
         "react-redux": "^8.0.5",
@@ -53,6 +54,7 @@
         ]
     },
     "devDependencies": {
+        "@types/react-color": "^3.0.6",
         "@types/react-router-dom": "^5.3.3",
         "@types/uuid": "^8.3.4",
         "node-sass": "^7.0.1"

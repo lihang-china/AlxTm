@@ -4,10 +4,10 @@
  * @Autor: Your Name
  * @Date: 2022-11-25 09:37:17
  * @LastEditors: Your Name
- * @LastEditTime: 2022-11-25 11:08:34
+ * @LastEditTime: 2022-12-02 10:31:23
  */
 import { Modal } from 'antd'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 export default function EditStyleModal(props: { open: boolean, handleClose: Function, component: any }) {
   const [open, setOpen] = useState(props.open)
   const { handleClose } = props

@@ -1,9 +1,10 @@
-import { Key, useEffect, useState } from "react"
+import { Key, useState } from "react"
 import { modalDom } from './setting'
 import editStyleModal from './EditStyleModal'
 import ClickMenu from './ClickMenu'
 import { DefaultDom } from "./domItems/Domcomponents"
 import './DomEdit.scss'
+interface Text { }
 export default function DomEdit(props: any) {
   const [domList, changeList] = useState<any>([])
   const [open, setOpen] = useState(false)
@@ -17,7 +18,7 @@ export default function DomEdit(props: any) {
           <div className="card" onClick={() => {
             handleClickCard(e)
           }} style={e.style} key={index}>
-           {e.tShow ? <div className="title" style={e.style.title}>{e.title ? e.title : 'Titile'}</div> :null}
+            {e.tShow ? <div className="title" style={e.style.title}>{e.title ? e.title : 'Titile'}</div> : null}
           </div>
         )
       })
@@ -44,23 +45,38 @@ export default function DomEdit(props: any) {
     copyDom.style.cursor = 'not-allowed'
     copyDom.style.position = 'absolute'
     copyDom.style.zIndex = 10
-    let mainDom = document.getElementsByClassName('edit_main')[0]   
+    let mainDom = document.getElementsByClassName('edit_main')[0]
     if (event.buttons === 1) {
       if (copyDom) {
         let fn = (event: any) => {
           copyDom.style.top = `${event.pageY - 50}px`
           copyDom.style.left = `${event.pageX - 50}px`
           copyDom.setAttribute('class', 'copy_item')
+          let arr = ['top', 'left', 'bottom', 'right']
+          arr.forEach((e) => {
+            if (e !== 'bottom' && e !== 'right') {
+              if (Math.abs(mainDom.getBoundingClientRect()[e as keyof Text] - copyDom.getBoundingClientRect()[e as keyof Text]) <= 20) {
+                copyDom.style[e as keyof Text] = mainDom.getBoundingClientRect()[e as keyof Text] + 'px'
+              }
+            } else {
+              let str = e === 'bottom' ? 'height' : 'width'
+              let str2 = e === 'bottom' ? 'top' : 'left'
+              if (Math.abs(mainDom.getBoundingClientRect()[str as keyof Text]
+                - (copyDom.getBoundingClientRect()[str as keyof Text] + copyDom.getBoundingClientRect()[str2 as keyof Text] - (str2 === 'left' ? parentDom.offsetWidth : 0))) <= 20)
+                copyDom.style[str2 as keyof Text] = mainDom.getBoundingClientRect()[str as keyof Text] - copyDom.getBoundingClientRect()[str as keyof Text] + (str2 === 'left' ? parentDom.offsetWidth : 0) + 'px'
+            }
+          })
           if (mainDom.childNodes.length >= 1) {
             mainDom.childNodes.forEach((e: any) => {
-              if (Math.abs(Number(copyDom.style.left.split('px')[0]) - parentDom.offsetWidth - Number(e.style.left.split('px')[0])) <= 20) {
+              if (Math.abs(copyDom.getBoundingClientRect().left - e.getBoundingClientRect().left) <= 20) {
                 //元素左对齐吸附
-                copyDom.style.left = Number(e.style.left.split('px')[0]) + parentDom.offsetWidth + 'px'
+                copyDom.style.left = e.getBoundingClientRect().left + 'px'
               }
-              if (Math.abs(Number(copyDom.style.top.split('px')[0]) - Number(e.style.top.split('px')[0])) <= 20) {
+              if (Math.abs(copyDom.getBoundingClientRect().top - e.getBoundingClientRect().top) <= 20) {
                 //元素上对齐吸附
-                copyDom.style.top = e.style.top
+                copyDom.style.top = e.getBoundingClientRect().top + 'px'
               }
+
             })
           }
         }
@@ -69,7 +85,7 @@ export default function DomEdit(props: any) {
         document.onmousemove = (e) => {
           setClickEvent({ ...event, open: false })
           fn(e)
-          if (copyDom.offsetLeft > parentDom.offsetWidth) {
+          if (copyDom.offsetLeft >= parentDom.offsetWidth) {
             copyDom.style.opacity = '1'
             copyDom.style.cursor = 'pointer'
             isDown = true
@@ -81,15 +97,15 @@ export default function DomEdit(props: any) {
         }
         document.onmouseup = () => {
           document.onmousemove = null
-           if (isDown && copyDom) {
-            getDom(copyDom,domList[index],parentDom.offsetWidth)
+          if (isDown && copyDom) {
+            getDom(copyDom, domList[index], parentDom.offsetWidth)
             console.log('----------------- 放下Dom -----------------');
-          } 
-            if (event.pageX < parentDom.offsetWidth && document.getElementsByClassName('copy_item')[0]?.nodeType === 1) {
-              copyDom = null
-              let dom = document.getElementsByClassName('copy_item')
-              parentDom.removeChild(dom[dom.length - 1])
-            }
+          }
+          if (event.pageX < parentDom.offsetWidth && document.getElementsByClassName('copy_item')[0]?.nodeType === 1) {
+            copyDom = null
+            let dom = document.getElementsByClassName('copy_item')
+            parentDom.removeChild(dom[dom.length - 1])
+          }
         }
       }
     } else {
@@ -120,7 +136,7 @@ export default function DomEdit(props: any) {
         {
           domList.map((e: { title: String | '', style: any }, index: number) => {
             return (
-             <DefaultDom key={index} data={e} onMouseDown={(e: any) => { getDoms(e, index) }} />
+              <DefaultDom key={index} data={e} onMouseDown={(e: any) => { getDoms(e, index) }} />
             )
           })
         }

@@ -1,0 +1,43 @@
+input {
+    text-align: center !important;
+    color: rgb(10, 10, 10) !important;
+}
+
+.ant-input-group {
+    border-radius: 6px;
+    background-color: rgb(248, 252, 255);
+    display: flex !important;
+    justify-content: start !important;
+    padding-left: 10px !important;
+    align-items: center;
+    .color_btn {
+        width: 22px !important;
+        height: 22px;
+        background-color: blue;
+        border-radius: 4px !important;
+        text-align: center !important;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .ant-input {
+        margin: 0;
+        width: calc(100% - 20px) !important;
+    }
+    &:hover {
+        border-right-width: 2px;
+        background-color: rgb(235, 235, 235) !important;
+    }
+}
+
+.input_group {
+    margin-top: 8px;
+    display: flex;
+    .ant-input {
+        margin-right: 3px;
+    }
+    .ant-select {
+        // width: 90%;
+        margin-left: 3px;
+    }
+}
