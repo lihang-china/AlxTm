@@ -1,43 +1,127 @@
-input {
-    text-align: center !important;
-    color: rgb(10, 10, 10) !important;
-}
-
-.ant-input-group {
-    border-radius: 6px;
-    background-color: rgb(248, 252, 255);
-    display: flex !important;
-    justify-content: start !important;
-    padding-left: 10px !important;
-    align-items: center;
-    .color_btn {
-        width: 22px !important;
-        height: 22px;
-        background-color: blue;
-        border-radius: 4px !important;
+    input {
         text-align: center !important;
-        &:hover {
-            cursor: pointer;
+        color: rgb(10, 10, 10) !important;
+    }
+    
+    .ant-input-number-affix-wrapper {
+        width: 100% !important;
+        border-radius: 6px !important;
+        background-color: rgb(248, 252, 255) !important;
+        .anticon {
+            color: rgb(110, 113, 116) !important;
+            font-size: 18px;
         }
     }
-    .ant-input {
+    
+    .ant-form-item {
         margin: 0;
-        width: calc(100% - 20px) !important;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid rgba(220, 220, 220, 0.2);
+        .sketch-picker {
+            margin: 0 auto;
+            width: calc(100% - 20px) !important;
+        }
     }
-    &:hover {
-        border-right-width: 2px;
-        background-color: rgb(235, 235, 235) !important;
-    }
-}
-
-.input_group {
-    margin-top: 8px;
-    display: flex;
+    
     .ant-input {
-        margin-right: 3px;
+        // width: 90%;
+        border-radius: 6px;
+        background-color: rgb(248, 252, 255);
+        &:hover {
+            background-color: rgb(235, 235, 235) !important;
+        }
     }
+    
     .ant-select {
         // width: 90%;
-        margin-left: 3px;
+        overflow: hidden;
+        border-radius: 6px !important;
+        background-color: rgb(248, 252, 255) !important;
+        .ant-select-selector {
+            background-color: rgb(248, 252, 255) !important;
+        }
+        &:hover {
+            background-color: rgb(235, 235, 235) !important;
+        }
     }
-}
+    
+    .ant-input-number {
+        width: 100% !important;
+        border-radius: 6px !important;
+        background-color: rgb(248, 252, 255) !important;
+    }
+    
+    .number_groupd {
+        display: flex;
+        .ant-select {
+            width: 150px !important;
+            background-color: rgba(0, 0, 0, 0) !important;
+            border-radius: 0 6px 6px 0 !important;
+            * {
+                border: 0 !important;
+            }
+            .ant-select-selector {
+                background-color: rgb(248, 252, 255) !important;
+                border-radius: 0 6px 6px 0 !important;
+            }
+            &:hover {
+                border: 0 !important;
+            }
+        }
+        .ant-input-number-affix-wrapper {
+            flex-grow: 1 !important;
+            border-radius: 6px 0 0 6px !important;
+        }
+    }
+    
+    .ant-input-group {
+        border-radius: 6px;
+        background-color: rgb(248, 252, 255);
+        display: flex !important;
+        justify-content: start !important;
+        padding-left: 10px !important;
+        align-items: center;
+        .color_btn {
+            width: 22px !important;
+            height: 22px;
+            border-radius: 4px !important;
+            text-align: center !important;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .ant-input {
+            margin: 0;
+            width: calc(100% - 20px) !important;
+        }
+        &:hover {
+            border-right-width: 2px;
+            background-color: rgb(235, 235, 235) !important;
+        }
+    }
+    
+    .color_border_options {
+        display: flex;
+        justify-content: space-between;
+        .icon_border {
+            span {
+                border: 1px solid rgb(220, 220, 220);
+                padding: 3px;
+                border-radius: 4px;
+                background-color: rgb(230, 233, 236);
+            }
+        }
+    }
+    
+    .input_group {
+        margin-top: 8px;
+        display: flex;
+        .ant-input {
+            margin-right: 3px;
+        }
+        .ant-select {
+            // width: 90%;
+            margin-left: 3px;
+        }
+    }

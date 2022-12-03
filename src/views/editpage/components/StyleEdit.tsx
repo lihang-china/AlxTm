@@ -4,10 +4,10 @@
  * @Autor: Your Name
  * @Date: 2022-11-24 11:11:24
  * @LastEditors: Your Name
- * @LastEditTime: 2022-12-02 16:17:23
+ * @LastEditTime: 2022-12-03 15:19:28
  */
 import './StyleEdit.scss'
-import { RightOutlined } from '@ant-design/icons';
+import { RightOutlined, ColumnHeightOutlined, ColumnWidthOutlined, BorderOuterOutlined, RadiusUpleftOutlined } from '@ant-design/icons';
 import 'quill/dist/quill.snow.css';
 import AceEditor from "react-ace";
 import { useEffect, useState } from 'react';
@@ -16,22 +16,27 @@ import { Items } from './formItems/items';
 export default function StyleEdit(props: any) {
   const { handleClose } = props
   const [areaValue, setAreaVal] = useState<string>()
-  const [bgColor, setBgcolor] = useState<string>()
+  const [formData, setFormData] = useState(JSON.parse(JSON.stringify(props.domData)))
   useEffect(() => {
+    setFormData(JSON.parse(JSON.stringify(props.domData)))
     setAreaVal(JSON.stringify(JSON.parse(JSON.stringify(props.domData.style)), null, '\t') || '')
   }, [props.domData])
   const { handleChange } = props
-  const itemList = [{ label: '长度', type: 'inputNumber' }, { label: '高度', type: 'inputNumber' }, { label: '边框', type: 'border' }, { label: '圆角', type: 'inputNumber' }, { label: '背景颜色', type: 'color' }]
+  const itemList = [{ label: '长度', type: 'inputNumber', icon: <ColumnWidthOutlined />, value: "width" },
+  { label: '高度', type: 'inputNumber', icon: <ColumnHeightOutlined />, value: "height" },
+  { label: '边框', type: 'border', icon: <BorderOuterOutlined />, value: "border" },
+  { label: '圆角', type: 'inputNumber', icon: <RadiusUpleftOutlined />, value: "borderRadius" },
+  { label: '背景颜色', type: 'color', value: "background" }]
   return (
     <div className="styleedit_conponent">
       <div className='styleedit_header'><span>Edit</span><span onClick={handleClose}><RightOutlined /></span></div>
       <div className='styleedit_main'>
         <Form layout="vertical">
           {
-            itemList.map(e => {
+            itemList.map((e, index) => {
               return (
-                <Form.Item labelAlign="left" label={e.label}>
-                  <Items type={e.type} />
+                <Form.Item key={index} labelAlign="left" label={e.label}>
+                  <Items itemData={formData} type={e.type} icon={e.icon} value={e.value} />
                 </Form.Item>
               )
             })

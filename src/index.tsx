@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-08-17 14:48:14
  * @LastEditors: Your Name
- * @LastEditTime: 2022-11-30 19:07:17
+ * @LastEditTime: 2022-12-03 15:25:09
  */
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -25,8 +25,9 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <Provider store={store}> <App />
-  </Provider>
+  // <Provider store={store}> 
+  <App />
+  // </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

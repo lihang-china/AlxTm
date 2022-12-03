@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-11-24 11:21:17
  * @LastEditors: Your Name
- * @LastEditTime: 2022-12-01 10:24:43
+ * @LastEditTime: 2022-12-03 17:19:48
  */
 const defaultDom = {
   title: '',
@@ -80,18 +80,21 @@ const modalDom = [{
   id: '',
   color: '#fff',
   type: 'Text',
+  tShow: true,
   style: {
-    width: '100%',
-    height: '90px',
-    background: 'rgba(154,89,181,0.5)',
-    borderRadius: '0px',
+    width: '80%',
+    maxWidth: '280px',
+    height: '180px',
+    background: 'rgba(0,20,20,0.5)',
+    borderRadius: '6px',
+    border: '1px solid rgb(0,20,20)',
     overflow: 'hidden',
     backdropFilter: 'saturate(100%) blur(10px)',
     title: {
       padding: '8px',
       color: '#fff',
       width: '100%',
-      background: 'rgba(154,89,181,0.2)',
+      background: 'rgba(80,80,80,0.2)',
     }
   }
 },

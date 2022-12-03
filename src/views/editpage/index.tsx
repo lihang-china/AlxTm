@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-11-24 11:06:39
  * @LastEditors: Your Name
- * @LastEditTime: 2022-12-02 13:39:50
+ * @LastEditTime: 2022-12-03 15:08:45
  */
 import './style/index.scss'
 import DomEdit from "./components/DomEdit"
@@ -47,6 +47,8 @@ export default function EditPage() {
     let arr = domList
     arr[domInedx as 0].style = JSON.parse(JSON.stringify(e))
     setDomList(JSON.parse(JSON.stringify(arr)))
+    setDomdata(JSON.parse(JSON.stringify(arr[domInedx as 0])))
+
   }
   return (
     <div className="edit_container" >
