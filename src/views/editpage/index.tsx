@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-11-24 11:06:39
  * @LastEditors: Your Name
- * @LastEditTime: 2022-12-06 14:03:50
+ * @LastEditTime: 2022-12-06 14:41:06
  */
 import './style/index.scss'
 import DomEdit from "./components/DomEdit"
@@ -22,7 +22,7 @@ export default function EditPage() {
   dataList.current = domList
   const getDom = (dom: any, data: { style: object }, width: number) => {
     //拷贝dom数据信息，更新数据列表
-    let arr = domList
+    let arr: any = [...dataList.current]
     let copyData = JSON.parse(JSON.stringify(data))
     copyData.style = {
       ...copyData.style,
@@ -30,7 +30,7 @@ export default function EditPage() {
       top: dom.getBoundingClientRect().top + 'px',
       position: 'absolute'
     }
-    arr.push(copyData)//改变引用，引用相同可能引起两个元素信息一致的问题
+    arr.push(copyData)
     setDomList(JSON.parse(JSON.stringify(arr)))
   }
   const handleMouseDown = async (t: any, data: object, index: number) => {
