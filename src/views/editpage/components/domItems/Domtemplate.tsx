@@ -4,8 +4,9 @@
  * @Autor: Your Name
  * @Date: 2022-11-29 16:49:44
  * @LastEditors: Your Name
- * @LastEditTime: 2022-12-02 10:36:07
+ * @LastEditTime: 2022-12-06 14:03:41
  */
+//模板组件
 export const DomTemplate = {
   Text: <div>asdasd</div>,
   Card: <div><h1>TITAPSODJPASOID</h1></div>,

@@ -18,6 +18,7 @@ $fontColor:rgb(250, 250, 250);
     right: 0;
     display: flex;
     flex-direction: column;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     .styleedit_main {
         overflow: auto;
         padding: 12px;
@@ -25,6 +26,8 @@ $fontColor:rgb(250, 250, 250);
             padding: 10px;
             .ant-form-item-label>label {
                 color: $fontColor;
+                font-size: 12px;
+                font-weight: 600;
             }
         }
     }

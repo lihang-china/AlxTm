@@ -27,7 +27,6 @@ export default function DomEdit(props: any) {
   document.addEventListener('selectstart', function (e) {
     e.preventDefault();
   })
-
   const handleClickCard = (item: Object) => {
     let arr = [...domList]
     arr.push(JSON.parse(JSON.stringify(item)))
@@ -96,10 +95,11 @@ export default function DomEdit(props: any) {
           }
         }
         document.onmouseup = () => {
+          //鼠标送开始释放元素，解除对元素的控制并初始化
+          document.onmouseup = null
           document.onmousemove = null
           if (isDown && copyDom) {
             getDom(copyDom, domList[index], parentDom.offsetWidth)
-            console.log('----------------- 放下Dom -----------------');
           }
           if (event.pageX < parentDom.offsetWidth && document.getElementsByClassName('copy_item')[0]?.nodeType === 1) {
             copyDom = null
@@ -109,6 +109,7 @@ export default function DomEdit(props: any) {
         }
       }
     } else {
+      //鼠标右键打开菜单
       handlerRight(event, index)
     }
   }
@@ -119,6 +120,7 @@ export default function DomEdit(props: any) {
     })
   }
   const handleMenuClick = (e: any) => {
+    //右键菜单操作
     let arr = [...domList]
     arr.splice(e.index, 1)
     changeList(arr)

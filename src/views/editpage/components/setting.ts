@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-11-24 11:21:17
  * @LastEditors: Your Name
- * @LastEditTime: 2022-12-03 17:19:48
+ * @LastEditTime: 2022-12-05 13:20:25
  */
 const defaultDom = {
   title: '',
@@ -35,8 +35,7 @@ const modalDom = [{
   color: '#fff',
   type: 'Button',
   style: {
-    width: '80%',
-    maxWidth: '280px',
+    width: '280px',
     height: '180px',
     background: 'rgba(19,203,203,0.5)',
     borderRadius: '6px',
@@ -59,8 +58,7 @@ const modalDom = [{
   type: 'Text',
   tShow: true,
   style: {
-    width: '80%',
-    maxWidth: '280px',
+    width: '280px',
     height: '180px',
     background: 'rgba(20,20,20,0.5)',
     borderRadius: '6px',
@@ -82,8 +80,7 @@ const modalDom = [{
   type: 'Text',
   tShow: true,
   style: {
-    width: '80%',
-    maxWidth: '280px',
+    width: '280px',
     height: '180px',
     background: 'rgba(0,20,20,0.5)',
     borderRadius: '6px',
@@ -104,8 +101,7 @@ const modalDom = [{
   color: '#fff',
   type: 'Text',
   style: {
-    width: '80%',
-    maxWidth: '280px',
+    width: '280px',
     height: '180px',
     background: 'rgba(53,152,219,0.5)',
     borderRadius: '6px',
@@ -127,8 +123,7 @@ const modalDom = [{
   color: '#fff',
   type: 'Text',
   style: {
-    width: '80%',
-    maxWidth: '280px',
+    width: '280px',
     height: '180px',
     background: 'rgba(231,77,61,0.5)',
     borderRadius: '6px',
@@ -150,8 +145,7 @@ const modalDom = [{
   color: '#fff',
   type: 'Text',
   style: {
-    width: '80%',
-    maxWidth: '280px',
+    width: '280px',
     height: '180px',
     background: 'rgba(243,44,44,0.5)',
     borderRadius: '6px',

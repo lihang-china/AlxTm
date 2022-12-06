@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-08-17 14:48:14
  * @LastEditors: Your Name
- * @LastEditTime: 2022-12-03 15:25:09
+ * @LastEditTime: 2022-12-05 09:40:23
  */
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -18,8 +18,8 @@ import "ace-builds/src-noconflict/mode-json5"
 // import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import store from './store/index'
-import { Provider } from 'react-redux'
+// import store from './store/index'
+// import { Provider } from 'react-redux'
 moment.locale('zh-cn')
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
