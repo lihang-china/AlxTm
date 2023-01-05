@@ -16,10 +16,8 @@ export default function EditStyleModal(props: { open: boolean, handleClose: Func
     setOpen(props.open)
   }, [props.open])
   return (
-    <div style={{ color: "#FFF" }}>
-      <Modal width={'40%'} className='myModal' title="默认外观" onCancel={() => { handleClose(false) }} visible={open} footer={null}>
-        {component}
-      </Modal>
-    </div>
+    <Modal width={'40%'} className='myModal' title="默认外观" onCancel={() => { handleClose(false) }} visible={open} footer={null}>
+      {component}
+    </Modal>
   )
 }

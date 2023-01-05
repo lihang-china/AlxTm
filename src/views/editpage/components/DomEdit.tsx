@@ -1,4 +1,4 @@
-import { Key, useState } from "react"
+import { Key, useEffect, useState } from "react"
 import { modalDom } from './setting'
 import editStyleModal from './EditStyleModal'
 import ClickMenu from './ClickMenu'
@@ -6,9 +6,11 @@ import { DefaultDom } from "./domItems/Domcomponents"
 import './DomEdit.scss'
 interface Text { }
 export default function DomEdit(props: any) {
+
   const [domList, changeList] = useState<any>([])
   const [open, setOpen] = useState(false)
   const [clickEvent, setClickEvent] = useState({ open: false })
+  const [menuHide, setMenuHide] = useState(false)
   const Model = editStyleModal
   const { getDom } = props
   const myCom = <div className="card_group">
@@ -38,44 +40,43 @@ export default function DomEdit(props: any) {
       return false;
     };
     let isDown = false
-    let copyDom: any = document.getElementsByClassName('dom_item')[index as 0] ? document.getElementsByClassName('dom_item')[index as 0].cloneNode(true) : ''
+    let copyDom: any = document.createDocumentFragment().appendChild(document.getElementsByClassName('dom_item')[index as 0].cloneNode(true)) //创建文档碎片
     let parentDom: any = document.getElementsByClassName('domedit_component')[0]
-    copyDom.style.opacity = '0.3'
-    copyDom.style.cursor = 'not-allowed'
-    copyDom.style.position = 'absolute'
-    copyDom.style.zIndex = 10
+    copyDom.style.cssText += "opacity:0.3;cursor:not-allowed;position:fixed;z-index:100"
     let mainDom = document.getElementsByClassName('edit_main')[0]
+    let mainDomClient = mainDom.getBoundingClientRect()
     if (event.buttons === 1) {
       if (copyDom) {
         let fn = (event: any) => {
-          copyDom.style.top = `${event.pageY - 50}px`
-          copyDom.style.left = `${event.pageX - 50}px`
+          copyDom.style.cssText += `top:${event.pageY - 50}px;left:${event.pageX - 50}px`
           copyDom.setAttribute('class', 'copy_item')
           let arr = ['top', 'left', 'bottom', 'right']
           arr.forEach((e) => {
+            let copyDomClient = copyDom.getBoundingClientRect()
             if (e !== 'bottom' && e !== 'right') {
-              if (Math.abs(mainDom.getBoundingClientRect()[e as keyof Text] - copyDom.getBoundingClientRect()[e as keyof Text]) <= 20) {
-                copyDom.style[e as keyof Text] = mainDom.getBoundingClientRect()[e as keyof Text] + 'px'
+              if (Math.abs(mainDomClient[e as keyof Text] - copyDomClient[e as keyof Text]) <= 20) {
+                copyDom.style[e as keyof Text] = mainDomClient[e as keyof Text] + 'px'
               }
             } else {
               let str = e === 'bottom' ? 'height' : 'width'
               let str2 = e === 'bottom' ? 'top' : 'left'
-              if (Math.abs(mainDom.getBoundingClientRect()[str as keyof Text]
-                - (copyDom.getBoundingClientRect()[str as keyof Text] + copyDom.getBoundingClientRect()[str2 as keyof Text] - (str2 === 'left' ? parentDom.offsetWidth : 0))) <= 20)
-                copyDom.style[str2 as keyof Text] = mainDom.getBoundingClientRect()[str as keyof Text] - copyDom.getBoundingClientRect()[str as keyof Text] + (str2 === 'left' ? parentDom.offsetWidth : 0) + 'px'
+              if (Math.abs(mainDomClient[str as keyof Text]
+                - (copyDomClient[str as keyof Text] + copyDomClient[str2 as keyof Text] - (str2 === 'left' ? parentDom.offsetWidth : 0))) <= 20)
+                copyDom.style[str2 as keyof Text] = mainDomClient[str as keyof Text] - copyDomClient[str as keyof Text] + (str2 === 'left' ? parentDom.offsetWidth : 0) + 'px'
             }
           })
           if (mainDom.childNodes.length >= 1) {
             mainDom.childNodes.forEach((e: any) => {
-              if (Math.abs(copyDom.getBoundingClientRect().left - e.getBoundingClientRect().left) <= 20) {
+              let copyDomClient = copyDom.getBoundingClientRect()
+              let eClient = e.getBoundingClientRect()
+              if (Math.abs(copyDomClient.left - eClient.left) <= 20) {
                 //元素左对齐吸附
-                copyDom.style.left = e.getBoundingClientRect().left + 'px'
+                copyDom.style.left = eClient.left + 'px'
               }
-              if (Math.abs(copyDom.getBoundingClientRect().top - e.getBoundingClientRect().top) <= 20) {
+              if (Math.abs(copyDomClient.top - eClient.top) <= 20) {
                 //元素上对齐吸附
-                copyDom.style.top = e.getBoundingClientRect().top + 'px'
+                copyDom.style.top = eClient.top + 'px'
               }
-
             })
           }
         }
@@ -85,12 +86,10 @@ export default function DomEdit(props: any) {
           setClickEvent({ ...event, open: false })
           fn(e)
           if (copyDom.offsetLeft >= parentDom.offsetWidth) {
-            copyDom.style.opacity = '1'
-            copyDom.style.cursor = 'pointer'
+            copyDom.style.cssText += 'opacity:1;cursor:pointer'
             isDown = true
           } else {
-            copyDom.style.opacity = '0.3'
-            copyDom.style.cursor = 'not-allowed'
+            copyDom.style.cssText += 'opacity:0.3;cursor:not-allowed'
             isDown = false
           }
         }
@@ -126,7 +125,8 @@ export default function DomEdit(props: any) {
     changeList(arr)
   }
   return (
-    <div className="domedit_component" >
+    <div className={menuHide ? 'domedit_component domedit_component_hide' : 'domedit_component'} >
+      <div className="hide_btn" onClick={() => { menuHide ? setMenuHide(false) : setMenuHide(true) }}>+</div>
       <ClickMenu clickEvent={clickEvent} handleClick={(e: any) => { handleMenuClick(e) }} />
       <Model component={myCom} open={open} handleClose={() => {
         setOpen(false)

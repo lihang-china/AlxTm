@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-11-24 11:21:17
  * @LastEditors: Your Name
- * @LastEditTime: 2022-12-05 13:20:25
+ * @LastEditTime: 2023-01-04 16:13:43
  */
 const defaultDom = {
   title: '',
@@ -17,8 +17,7 @@ const defaultDom = {
     background: 'rgba(19,203,203,0.5)',
     borderRadius: '6px',
     border: '1px solid rgb(19,203,203)',
-    overflow: 'hidden',
-    backdropFilter: 'saturate(100%) blur(10px)',
+    backdropFilter: 'saturate(100%) blur(6px)',
     title: {
       padding: '8px',
       color: '#fff',
@@ -40,8 +39,7 @@ const modalDom = [{
     background: 'rgba(19,203,203,0.5)',
     borderRadius: '6px',
     border: '1px solid rgb(19,203,203)',
-    overflow: 'hidden',
-    backdropFilter: 'saturate(100%) blur(10px)',
+    backdropFilter: 'saturate(100%) blur(6px)',
     title: {
       padding: '8px',
       color: '#fff',
@@ -63,8 +61,7 @@ const modalDom = [{
     background: 'rgba(20,20,20,0.5)',
     borderRadius: '6px',
     border: '1px solid rgb(20,20,20)',
-    overflow: 'hidden',
-    backdropFilter: 'saturate(100%) blur(10px)',
+    backdropFilter: 'saturate(100%) blur(6px)',
     title: {
       padding: '8px',
       color: '#fff',
@@ -85,8 +82,7 @@ const modalDom = [{
     background: 'rgba(0,20,20,0.5)',
     borderRadius: '6px',
     border: '1px solid rgb(0,20,20)',
-    overflow: 'hidden',
-    backdropFilter: 'saturate(100%) blur(10px)',
+    backdropFilter: 'saturate(100%) blur(6px)',
     title: {
       padding: '8px',
       color: '#fff',
@@ -106,8 +102,7 @@ const modalDom = [{
     background: 'rgba(53,152,219,0.5)',
     borderRadius: '6px',
     border: '1px solid rgb(53,152,219)',
-    overflow: 'hidden',
-    backdropFilter: 'saturate(100%) blur(10px)',
+    backdropFilter: 'saturate(100%) blur(6px)',
     title: {
       padding: '8px',
       color: '#fff',
@@ -128,8 +123,7 @@ const modalDom = [{
     background: 'rgba(231,77,61,0.5)',
     borderRadius: '6px',
     border: '1px solid rgb(231,77,61)',
-    overflow: 'hidden',
-    backdropFilter: 'saturate(100%) blur(10px)',
+    backdropFilter: 'saturate(100%) blur(6px)',
     title: {
       padding: '8px',
       color: '#fff',
@@ -150,8 +144,7 @@ const modalDom = [{
     background: 'rgba(243,44,44,0.5)',
     borderRadius: '6px',
     border: '1px solid rgb(243,44,44)',
-    overflow: 'hidden',
-    backdropFilter: 'saturate(100%) blur(10px)',
+    backdropFilter: 'saturate(100%) blur(6px)',
     title: {
       padding: '8px',
       color: '#fff',

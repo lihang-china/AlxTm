@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-12-02 14:50:19
  * @LastEditors: Your Name
- * @LastEditTime: 2022-12-06 14:08:14
+ * @LastEditTime: 2022-12-27 13:28:54
  */
 import './items.scss'
 import { Select, Input, InputNumber } from 'antd'
@@ -17,7 +17,6 @@ export const Items = (props: any) => {
   const valTypeList = [{ label: "百分比", value: '%' }, { label: "像素值", value: 'px' }]
   const [valType, setValueType] = useState<string>()
   const [broderData, setborderData] = useState({ size: '', type: '', color: '' })
-  let domData: any = {}
   useEffect(() => {
     let obj = valTypeList.find((e: any) => props.itemData.style[props.value].includes(e.value))
     setValueType(obj?.value)
@@ -57,6 +56,7 @@ export const Items = (props: any) => {
   ]
   const { getDomdata } = props
   const setData = () => {
+    let domData: any = {}
     if (props.type === 'inputNumber') {
       domData = JSON.parse(JSON.stringify(props.itemData))
       domData.style[props.value] = mValue + (valType ? valType : '')
