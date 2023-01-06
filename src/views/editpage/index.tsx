@@ -4,20 +4,21 @@
  * @Autor: Your Name
  * @Date: 2022-11-24 11:06:39
  * @LastEditors: Your Name
- * @LastEditTime: 2023-01-05 14:03:14
+ * @LastEditTime: 2023-01-06 15:59:54
  */
 import './style/index.scss'
 import DomEdit from "./components/DomEdit"
 import StyleEdit from './components/StyleEdit'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { DefaultDom } from "./components/domItems/Domcomponents"
 import { EyeOutlined, CheckOutlined } from '@ant-design/icons'
-import { useHistory } from 'react-router-dom'
+import { dragTargetDom, alignDom } from '../../public/auth'
+// import { useHistory } from 'react-router-dom'
 export default function EditPage() {
-  const history = useHistory()
+  // const history = useHistory()
   let mouseSate = 'move'
   let editDom = false
-  let dom1: any = document.getElementsByClassName('edit_main')[0]
+  let mainDom: any = document.getElementsByClassName('edit_main')[0]
   const buttonList = [{ label: '查看', icon: <EyeOutlined /> }, { label: '保存', icon: <CheckOutlined /> }]
   const [domList, setDomList] = useState<any>([])
   const dataList = useRef<any>([]) //解决鼠标事件嵌套导致hook的闭包问题，确保数据唯一性
@@ -44,9 +45,8 @@ export default function EditPage() {
     // 拖动改变元素大小
     editDom = true //锁定元素编辑状态
     //拖动与更改元素大小时需固定元素部分初始状态
-    let dom: any = document.getElementById('main_dom' + String(index))
-    let D1left = dom1.offsetLeft
-    let { offsetLeft: Dleft, offsetWidth: Dwidth, offsetHeight: Dheight, offsetTop: Dtop } = dom
+    let targetDom: any = document.getElementById('main_dom' + String(index))
+    let { offsetLeft: Dleft, offsetWidth: Dwidth, offsetHeight: Dheight, offsetTop: Dtop } = targetDom
     if (t.buttons === 2) {
       //鼠标左键打开编辑栏
       setOpen(true)
@@ -54,27 +54,19 @@ export default function EditPage() {
       document.onmousemove = (e) => {
         //鼠标拖动时更新dom数据实现拖动效果，放下时更新domlsit数据
         if (mouseSate === 'move') {
-          dom.style.cssText += `left:${e.pageX - dom1.offsetLeft - (t.pageX - D1left - Dleft)}px;top:${e.pageY - (t.pageY - Dtop)}px;z-index:101`
-          dom1.childNodes.forEach((child: any) => {
-            if (Math.abs(dom.offsetLeft - child.offsetLeft) <= 20) {
-              //元素左对齐吸附
-              dom.style.left = child.offsetLeft + 'px'
-            }
-            if (Math.abs(dom.offsetTop - child.offsetTop) <= 20) {
-              //元素上对齐吸附
-              dom.style.top = child.offsetTop + 'px'
-            }
-          })
+          targetDom.style.cssText += `z-index:101`
+          dragTargetDom(e, mainDom, targetDom, [t.pageY - Dtop, t.pageX - Dleft])
+          alignDom(mainDom, targetDom)
         } else if (mouseSate === 'R') {
-          dom.style.width = e.pageX - dom1.offsetLeft - dom.offsetLeft + 'px'
+          targetDom.style.width = e.pageX - mainDom.offsetLeft - targetDom.offsetLeft + 'px'
         } else if (mouseSate === 'B') {
-          dom.style.height = e.pageY - dom.offsetTop + 'px'
+          targetDom.style.height = e.pageY - targetDom.offsetTop + 'px'
         } else if (mouseSate === 'L') {
-          dom.style.left = e.pageX - dom1.offsetLeft + 'px'
-          dom.style.width = Dwidth + (Dleft - (e.pageX - dom1.offsetLeft)) + 'px'
+          targetDom.style.left = e.pageX - mainDom.offsetLeft + 'px'
+          targetDom.style.width = Dwidth + (Dleft - (e.pageX - mainDom.offsetLeft)) + 'px'
         } else if (mouseSate === 'T') {
-          dom.style.top = e.pageY + 'px'
-          dom.style.height = Dheight + (Dtop - e.pageY) + 'px'
+          targetDom.style.top = e.pageY + 'px'
+          targetDom.style.height = Dheight + (Dtop - e.pageY) + 'px'
         }
       }
     }
@@ -83,9 +75,9 @@ export default function EditPage() {
       document.onmouseup = null
       document.onmousemove = null
       editDom = false
-      dom.style.zIndex = 0
+      targetDom.style.zIndex = 0
       let arr = [...domList]
-      let { left, top, width, height } = dom.style
+      let { left, top, width, height } = targetDom.style
       arr[index].style = {
         ...arr[index].style,
         left: left,
@@ -110,7 +102,6 @@ export default function EditPage() {
     let dom: any = document.getElementById('main_dom' + String(index))
     //  T0 元素与顶部距离 L0 元素与左边距离 Dw  元素宽度 Dh 元素高度
     let { offsetTop: T0, offsetLeft: L0, offsetWidth: Dw, offsetHeight: Dh } = dom
-    let parentDomLeft = dom1.offsetLeft
     if (!document.onmousemove) {
       if (e.pageY > T0 - 2 && e.pageY < T0 + 10) {
         dom.style.cursor = 's-resize'
@@ -118,10 +109,10 @@ export default function EditPage() {
       } else if (e.pageY > T0 + Dh - 10 && e.pageY < T0 + Dh + 2) {
         dom.style.cursor = 's-resize'
         mouseSate = 'B'
-      } else if (e.pageX - parentDomLeft > L0 - 2 && e.pageX - parentDomLeft < L0 + 10) {
+      } else if (e.pageX > L0 - 2 && e.pageX < L0 + 10) {
         mouseSate = 'L'
         dom.style.cursor = 'w-resize'
-      } else if (e.pageX - parentDomLeft > L0 + Dw - 10 && e.pageX - parentDomLeft < L0 + Dw + 2) {
+      } else if (e.pageX > L0 + Dw - 10 && e.pageX < L0 + Dw + 2) {
         dom.style.cursor = 'w-resize'
         mouseSate = 'R'
       } else {
