@@ -30,9 +30,49 @@ export default function DomEdit(props: any) {
     e.preventDefault();
   })
   const handleClickCard = (item: Object) => {
-    let arr = [...domList]
-    arr.push(JSON.parse(JSON.stringify(item)))
-    changeList(arr)
+    let copyList = [...domList]
+    copyList.push(JSON.parse(JSON.stringify(item)))
+    changeList(copyList)
+  }
+  const targetDom = (event: any, mainDom: any, copyDom: any, parentDom: any) => {
+    let clientList = ['top', 'left', 'bottom', 'right']
+    let attributeStr
+    let lastAttributeStr
+    let mainDomClient = mainDom.getBoundingClientRect()
+    //元素拖拽效果
+    copyDom.style.cssText += `top:${event.pageY - 50}px;left:${event.pageX - 50}px` //鼠标选中元素
+    copyDom.setAttribute('class', 'copy_item') //copy元素并赋给新的类名，以便操作
+    clientList.forEach((e) => {
+      let copyDomClient = copyDom.getBoundingClientRect()
+      if (e !== 'bottom' && e !== 'right') {   //画布元素与copy元素的差的绝对值小于20像素时，吸附画布元素的top和left边框
+        if (Math.abs(mainDomClient[e as keyof Text] - copyDomClient[e as keyof Text]) <= 20) {
+          copyDom.style[e as keyof Text] = mainDomClient[e as keyof Text] + 'px'
+        }
+      } else {
+        attributeStr = e === 'bottom' ? 'height' : 'width'
+        lastAttributeStr = e === 'bottom' ? 'top' : 'left'
+        console.log(attributeStr, lastAttributeStr, '222222');
+        if (Math.abs(mainDomClient[attributeStr as keyof Text]
+          - (copyDomClient[attributeStr as keyof Text] + copyDomClient[lastAttributeStr as keyof Text] - (lastAttributeStr === 'left' ? parentDom.offsetWidth : 0))) <= 20) {
+          copyDom.style[lastAttributeStr as keyof Text] = mainDomClient[attributeStr as keyof Text] - copyDomClient[attributeStr as keyof Text] + (lastAttributeStr === 'left' ? parentDom.offsetWidth : 0) + 'px'
+        }
+      }
+    })
+    if (mainDom.childNodes.length >= 1) {
+      //判断画布元素下的dom数量，大于等于1就执行
+      mainDom.childNodes.forEach((e: any) => {
+        let copyDomClient = copyDom.getBoundingClientRect()
+        let eClient = e.getBoundingClientRect()
+        if (Math.abs(copyDomClient.left - eClient.left) <= 20) {
+          //元素左对齐吸附
+          copyDom.style.left = eClient.left + 'px'
+        }
+        if (Math.abs(copyDomClient.top - eClient.top) <= 20) {
+          //元素上对齐吸附
+          copyDom.style.top = eClient.top + 'px'
+        }
+      })
+    }
   }
   const getDoms = (event: any, index: number) => {
     document.oncontextmenu = function (e) {/*屏蔽浏览器默认右键事件*/
@@ -40,51 +80,19 @@ export default function DomEdit(props: any) {
       return false;
     };
     let isDown = false
+    //复制选中的元素
     let copyDom: any = document.createDocumentFragment().appendChild(document.getElementsByClassName('dom_item')[index as 0].cloneNode(true)) //创建文档碎片
+    //获取父元素
     let parentDom: any = document.getElementsByClassName('domedit_component')[0]
     copyDom.style.cssText += "opacity:0.3;cursor:not-allowed;position:fixed;z-index:100"
     let mainDom = document.getElementsByClassName('edit_main')[0]
-    let mainDomClient = mainDom.getBoundingClientRect()
     if (event.buttons === 1) {
       if (copyDom) {
-        let fn = (event: any) => {
-          copyDom.style.cssText += `top:${event.pageY - 50}px;left:${event.pageX - 50}px`
-          copyDom.setAttribute('class', 'copy_item')
-          let arr = ['top', 'left', 'bottom', 'right']
-          arr.forEach((e) => {
-            let copyDomClient = copyDom.getBoundingClientRect()
-            if (e !== 'bottom' && e !== 'right') {
-              if (Math.abs(mainDomClient[e as keyof Text] - copyDomClient[e as keyof Text]) <= 20) {
-                copyDom.style[e as keyof Text] = mainDomClient[e as keyof Text] + 'px'
-              }
-            } else {
-              let str = e === 'bottom' ? 'height' : 'width'
-              let str2 = e === 'bottom' ? 'top' : 'left'
-              if (Math.abs(mainDomClient[str as keyof Text]
-                - (copyDomClient[str as keyof Text] + copyDomClient[str2 as keyof Text] - (str2 === 'left' ? parentDom.offsetWidth : 0))) <= 20)
-                copyDom.style[str2 as keyof Text] = mainDomClient[str as keyof Text] - copyDomClient[str as keyof Text] + (str2 === 'left' ? parentDom.offsetWidth : 0) + 'px'
-            }
-          })
-          if (mainDom.childNodes.length >= 1) {
-            mainDom.childNodes.forEach((e: any) => {
-              let copyDomClient = copyDom.getBoundingClientRect()
-              let eClient = e.getBoundingClientRect()
-              if (Math.abs(copyDomClient.left - eClient.left) <= 20) {
-                //元素左对齐吸附
-                copyDom.style.left = eClient.left + 'px'
-              }
-              if (Math.abs(copyDomClient.top - eClient.top) <= 20) {
-                //元素上对齐吸附
-                copyDom.style.top = eClient.top + 'px'
-              }
-            })
-          }
-        }
-        fn(event)
+        targetDom(event, mainDom, copyDom, parentDom)
         parentDom.appendChild(copyDom || null)
         document.onmousemove = (e) => {
           setClickEvent({ ...event, open: false })
-          fn(e)
+          targetDom(e, mainDom, copyDom, parentDom)
           if (copyDom.offsetLeft >= parentDom.offsetWidth) {
             copyDom.style.cssText += 'opacity:1;cursor:pointer'
             isDown = true
