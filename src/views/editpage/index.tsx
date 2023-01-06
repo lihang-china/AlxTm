@@ -4,7 +4,7 @@
  * @Autor: Your Name
  * @Date: 2022-11-24 11:06:39
  * @LastEditors: Your Name
- * @LastEditTime: 2023-01-06 15:59:54
+ * @LastEditTime: 2023-01-06 16:22:23
  */
 import './style/index.scss'
 import DomEdit from "./components/DomEdit"
@@ -137,7 +137,7 @@ export default function EditPage() {
         })}
       </div>
       <DomEdit getDom={(dom: any, data: { style: object }, width: number) => { getDom(dom, data, width) }} />
-      <div className='edit_main' >
+      <div className='edit_main' id='edit_main'>
         {
           dataList.current.map((e: { title: String | '', style: any }, index: number) => {
             return (

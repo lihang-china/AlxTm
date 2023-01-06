@@ -38,7 +38,7 @@ export default function DomEdit(props: any) {
       e = e || window.event;
       return false;
     };
-    let mainDom = document.getElementsByClassName('edit_main')[0] //获取画布元素
+    let mainDom = document.getElementById('edit_main') //获取画布元素
     let isDown = false
     //复制选中的元素
     let copyDom: any = document.createDocumentFragment().appendChild(document.getElementsByClassName('dom_item')[index].cloneNode(true)) //创建文档碎片
@@ -51,8 +51,8 @@ export default function DomEdit(props: any) {
         parentDom.appendChild(copyDom)
         document.onmousemove = (e) => {
           setClickEvent({ ...event, open: false })
-          dragTargetDom(e, mainDom, copyDom, [50, 50]) //
-          alignDom(mainDom, copyDom)
+          dragTargetDom(e, mainDom as HTMLElement, copyDom, [50, 50]) //
+          alignDom(mainDom as HTMLElement, copyDom)
           if (copyDom.offsetLeft >= parentDom.offsetWidth) {
             copyDom.style.cssText += 'opacity:1;cursor:pointer'
             isDown = true
