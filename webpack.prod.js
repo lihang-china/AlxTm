@@ -1,5 +1,5 @@
 /*
- * @Descriptin: 
+ * @Descriptin:
  * @Version: 0.1
  * @Autor: Your Name
  * @Date: 2022-12-07 13:14:54
@@ -36,7 +36,7 @@ module.exports = merge(baseConfig, {
                 vendors: { //提取mode_modules文件
                     test: /node_modules/, //匹配node_modules
                     name: 'vendors',
-                    minChunks: 1, // 只要使用一次就提取出来
+                    minChunks: 5, // 只要使用一次就提取出来
                     chunks: 'initial', // 只提取初始化就能获取到的模块,不管异步的
                     minSize: 0, //体积大于0就提取
                     priority: 1 //提取优先级1

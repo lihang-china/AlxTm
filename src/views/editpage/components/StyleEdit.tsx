@@ -1,5 +1,5 @@
 /*
- * @Descriptin: 
+ * @Descriptin:
  * @Version: 0.1
  * @Autor: Your Name
  * @Date: 2022-11-24 11:11:24
@@ -25,9 +25,9 @@ export default function StyleEdit(props: any) {
   //表单item元素数据
   const itemList = [{ label: '长度', type: 'inputNumber', icon: <ColumnWidthOutlined />, value: "width" },
   { label: '高度', type: 'inputNumber', icon: <ColumnHeightOutlined />, value: "height" },
-  { label: '边框', type: 'border', icon: <BorderOuterOutlined />, value: "border" },
-  { label: '圆角', type: 'inputNumber', icon: <RadiusUpleftOutlined />, value: "borderRadius" },
-  { label: '背景颜色', type: 'color', value: "background" }]
+  { label: '边框', type: 'border', icon: <BorderOuterOutlined />, value: "stroke",width:'strokeWidth',status:'strokeDasharray' },
+  // { label: '圆角', type: 'inputNumber', icon: <RadiusUpleftOutlined />, value: "borderRadius" },
+  { label: '背景颜色', type: 'color', value: "fill" }]
   const getDomdata = (data: any) => {
     handleChange(data.style)
   }
@@ -40,7 +40,7 @@ export default function StyleEdit(props: any) {
             itemList.map((e, index) => {
               return (
                 <Form.Item key={index} labelAlign="left" label={e.label}>
-                  <Items getDomdata={getDomdata} itemData={formData} type={e.type} icon={e.icon} value={e.value} />
+                  <Items getDomdata={getDomdata} itemData={formData}  data={e} />
                 </Form.Item>
               )
             })
